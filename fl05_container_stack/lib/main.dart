@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-void main() => runApp(MyApp());
+void main() => runApp(MyStack());
 
 class MyApp extends StatefulWidget {
   MyApp({Key key}) : super(key: key);
@@ -37,6 +37,47 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           )),
+    );
+  }
+}
+
+class MyStack extends StatefulWidget {
+  MyStack({Key key}) : super(key: key);
+
+  _MyStackState createState() => _MyStackState();
+}
+
+class _MyStackState extends State<MyStack> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Stack App"),
+        ),
+        body: Center(
+          child: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Container(
+                width: 400,
+                height: 400,
+                color: Colors.green,
+              ),
+              Container(
+                width: 300,
+                height: 300,
+                color: Colors.amber,
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                color: Colors.red,
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
