@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -7,7 +8,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wordpair = WordPair.random();
     return MaterialApp(
       title: "This is my app",
       home: Scaffold(
@@ -17,9 +17,31 @@ class MyApp extends StatelessWidget {
           ),
         ),
         body: Center(
-          child: Text(wordpair.asPascalCase),
+          child: Row(
+            children: <Widget>[
+               RandomWords(),
+                RandomWords(),
+                 RandomWords()
+            ],
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
         ),
       ),
     );
   }
+}
+
+// save state for app
+class RandomWordsState extends State<RandomWords> {
+  @override
+  Widget build(BuildContext context) {
+    final wordpair = WordPair.random();
+    return Text(wordpair.asPascalCase);
+  }
+}
+
+// Create state
+class RandomWords extends StatefulWidget {
+  @override
+  RandomWordsState createState() => RandomWordsState();
 }
