@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
 // save state for app
 class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
-  final _biggerFont =
-      const TextStyle(fontSize: 18.0, color: Colors.orange);
+  final Set<WordPair> _saved = Set<WordPair>();
+  final _biggerFont = const TextStyle(fontSize: 20, color: Colors.orange);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class RandomWordsState extends State<RandomWords> {
 
   Widget _buildSuggestions() {
     return ListView.builder(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(10.0),
       itemBuilder: /*1*/ (context, i) {
         if (i.isOdd) return Divider(); /*2*/
         final index = i ~/ 2; /*3*/ // same index = i / 2
@@ -50,10 +50,15 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair) {
+    final bool alreadySaved = _saved.contains(pair); 
     return ListTile(
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
+      ),
+      trailing: Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : null,
       ),
     );
   }
