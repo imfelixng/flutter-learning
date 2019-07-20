@@ -10,6 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "This is my app",
+      theme: ThemeData(
+        primaryColor: Colors.white
+      ),
       home: RandomWords(),
     );
   }
