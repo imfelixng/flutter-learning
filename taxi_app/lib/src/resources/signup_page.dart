@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_app/src/blocs/auth_bloc.dart';
+import 'package:taxi_app/src/firebase/firebase_auth.dart';
+import 'package:taxi_app/src/resources/home_page.dart';
 import 'package:taxi_app/src/resources/login_page.dart';
 
 class SignUp extends StatefulWidget {
@@ -188,7 +190,17 @@ class _SignUpState extends State<SignUp> {
     var pass = _passController.text;
 
     if (authBloc.isValidDataSignUp(name, phone, email, pass)) {
-      print("Data valid");
+      authBloc.signUp(name, phone, email, pass, () {
+        _nameController.clear();
+        _phoneController.clear();
+        _emailController.clear();
+        _passController.clear();
+        Navigator.push(context,
+          MaterialPageRoute(
+            builder: (context) => Home()
+          )
+        );
+      });
     }
   }
 
