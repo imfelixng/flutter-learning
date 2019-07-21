@@ -12,7 +12,6 @@ class LoadingDialog {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               CircularProgressIndicator(),
-
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(msg, style: TextStyle(fontSize: 16),),

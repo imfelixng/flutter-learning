@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:taxi_app/src/blocs/auth_bloc.dart';
 import 'package:taxi_app/src/resources/forgot_password_page.dart';
+import 'package:taxi_app/src/resources/home_page.dart';
 import 'package:taxi_app/src/resources/signup_page.dart';
+import 'package:taxi_app/src/resources/widgets/dialog/loading_dialog.dart';
+import 'package:taxi_app/src/resources/widgets/dialog/message_dialog.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -10,6 +14,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController _emailController = new TextEditingController();
+  TextEditingController _passController = new TextEditingController();
+
+  AuthBloc authBloc = new AuthBloc();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,29 +61,43 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: TextField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.email),
-                          labelText: "Email",
-                          labelStyle:
-                              TextStyle(fontSize: 16, color: Colors.grey)),
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: StreamBuilder(
+                        stream: authBloc.emailStream,
+                        builder: (context, snapshot) {
+                          return TextField(
+                            controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                                errorText:
+                                    snapshot.hasError ? snapshot.error : null,
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(Icons.email),
+                                labelText: "Email",
+                                labelStyle: TextStyle(
+                                    fontSize: 16, color: Colors.grey)),
+                          );
+                        },
+                      )),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.lock),
-                          labelText: "Password",
-                          labelStyle:
-                              TextStyle(fontSize: 16, color: Colors.grey)),
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: StreamBuilder(
+                        stream: authBloc.passStream,
+                        builder: (context, snapshot) {
+                          return TextField(
+                            controller: _passController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                errorText:
+                                    snapshot.hasError ? snapshot.error : null,
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(Icons.lock),
+                                labelText: "Password",
+                                labelStyle: TextStyle(
+                                    fontSize: 16, color: Colors.grey)),
+                          );
+                        },
+                      )),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
@@ -135,7 +158,23 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void _onLogIn() {}
+  void _onLogIn() {
+    var email = _emailController.text;
+    var pass = _passController.text;
+    if (authBloc.isValidDataLogin(email, pass)) {
+      LoadingDialog.showLoadingDialog(context, "Logging user...");
+      authBloc.signIn(email, pass, () {
+        _emailController.clear();
+        _passController.clear();
+        LoadingDialog.hideLoadingDialog(context);
+        Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Home()));
+      }, (msg) {
+        LoadingDialog.hideLoadingDialog(context);
+        MessageDialog.showMsgDialog(context, "Sign In Error", msg);
+      });
+    }
+  }
 
   void _onOpenForgotPassword() {
     Navigator.push(

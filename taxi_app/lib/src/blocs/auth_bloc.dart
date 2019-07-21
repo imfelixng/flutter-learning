@@ -16,7 +16,6 @@ class AuthBloc {
   Stream get passStream => _passController.stream;
 
   bool isValidDataSignUp(String name, String phone, String email, String pass) {
-    print(name);
     bool isInvalidName = name == null || name.length == 0;
     bool isInvalidPhone = phone == null || phone.length == 0;
     bool isInvalidEmail = email == null || email.length == 0;
@@ -50,8 +49,31 @@ class AuthBloc {
     return true;
   }
 
+  bool isValidDataLogin(String email, String pass) {
+    bool isInvalidEmail = email == null || email.length == 0;
+    bool isInvalidPass = pass == null || pass.length == 0;
+
+    if (isInvalidEmail) {
+      _emailController.sink.addError("Email is invalid");
+      return false;
+    }
+    _emailController.sink.add("");
+    if (isInvalidPass) {
+      _passController.sink.addError("Pass is invalid");
+      return false;
+    }
+    _passController.sink.add("");
+
+    return true;
+
+  }
+
   void signUp(String name, String phone, String email, String pass, Function onSuccess, Function(String) onRegisterError) {
     _fbAuth.signUp(email, pass, name, phone, onSuccess, onRegisterError);
+  }
+
+  void signIn(String email, String pass, Function onSuccess, Function(String) onSignInError) {
+    _fbAuth.signIn(email, pass, onSuccess, onSignInError);
   }
 
   void dispose() {
