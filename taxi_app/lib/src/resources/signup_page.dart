@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:taxi_app/src/resources/forgot_password_page.dart';
-import 'package:taxi_app/src/resources/signup_page.dart';
+import 'package:taxi_app/src/resources/login_page.dart';
 
-class Login extends StatefulWidget {
-  Login({Key key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  SignUp({Key key}) : super(key: key);
 
-  _LoginState createState() => _LoginState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginState extends State<Login> {
+class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,22 +19,22 @@ class _LoginState extends State<Login> {
             child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-                            SizedBox(
+              SizedBox(
                 width: double.infinity,
-                height: 150,
+                height: 59,
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 40),
                 child: Image.asset(
-                  'assets/images/img_car_green.png',
+                  'assets/images/img_car_red.png',
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Text(
-                  "Welcome Back!",
+                  "Welcome Aboard!",
                   style: TextStyle(
-                    color: Colors.black54,
+                    color: Colors.black87,
                     fontSize: 20,
                     fontWeight: FontWeight.w600
                   ),
@@ -45,14 +43,34 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 80),
                 child: Text(
-                  "Login to continue using iCab",
+                  "Signup with iCab in simple steps",
                   style: TextStyle(
-                    color: Colors.black87,
+                    color: Colors.black54,
                     fontSize: 16,
                   ),
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: TextField(
+                  decoration: InputDecoration(
+                      labelText: "Name",
+                      labelStyle: TextStyle(
+                        fontSize: 16,
+                      )),
+                ),
+              ),
+                            Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: TextField(
+                  decoration: InputDecoration(
+                      labelText: "Phone Number",
+                      labelStyle: TextStyle(
+                        fontSize: 16,
+                      )),
+                ),
+              ),
+                            Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: TextField(
                   decoration: InputDecoration(
@@ -63,7 +81,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(bottom: 0),
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -73,21 +91,6 @@ class _LoginState extends State<Login> {
                       )),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: _onOpenForgotPassword,
-                    child: Text(
-                    "Forget password?",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16
-                    ),
-                  ),
-                  )
-                ],
-              ),
               Padding(
                 padding: const EdgeInsets.only(top: 30, bottom: 30),
                 child: SizedBox(
@@ -96,9 +99,9 @@ class _LoginState extends State<Login> {
                   child: RaisedButton(
                     color: Colors.blue,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-                    onPressed: _onLogIn,
+                    onPressed: _onSignUp,
                     child: Text(
-                      "Log In",
+                      "Sign Up",
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white
@@ -110,18 +113,19 @@ class _LoginState extends State<Login> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "New User? ",
+                      "Already a User? ",
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
                       ),
                     ),
                     GestureDetector(
-                      onTap: _onOpenSignUp,
+                      onTap: _onOpenLogin,
                       child: Text(
-                      "Sign up for a new account",
+                      "Login now",
                       style: TextStyle(
                         color: Colors.blue,
                         fontSize: 16,
@@ -139,20 +143,14 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void _onLogIn() {
+void _onSignUp() {
 
-  }
+}
 
-  void _onOpenForgotPassword() {
+void _onOpenLogin() {
     Navigator.push(context, MaterialPageRoute(
-      builder: (context) => ForgotPassword()
+      builder: (context) => Login()
     ));
-  }
-
-    void _onOpenSignUp() {
-    Navigator.push(context, MaterialPageRoute(
-      builder: (context) => SignUp()
-    ));
-  }
+}
 
 }
