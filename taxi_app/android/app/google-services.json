@@ -1,0 +1,120 @@
+{
+  "project_info": {
+    "project_number": "519982968515",
+    "firebase_url": "https://react-native-ngquangan.firebaseio.com",
+    "project_id": "react-native-ngquangan",
+    "storage_bucket": "react-native-ngquangan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519982968515:android:c14f8cedd22d1ac2",
+        "android_client_info": {
+          "package_name": "com.admodexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "519982968515-a3728nsit77t913q8jqjem50idong0ka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASKIpC2r9lISgM1kT5mRaBLAS3dsxmXe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "519982968515-a3728nsit77t913q8jqjem50idong0ka.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "519982968515-1k1hcvn1l25cc6l8g8qm60pt09qifu07.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ngquangan.taxiApp"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-6590896323514966~2684981973"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519982968515:android:70eccc80eb00645b",
+        "android_client_info": {
+          "package_name": "com.gaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "519982968515-a3728nsit77t913q8jqjem50idong0ka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASKIpC2r9lISgM1kT5mRaBLAS3dsxmXe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "519982968515-a3728nsit77t913q8jqjem50idong0ka.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "519982968515-1k1hcvn1l25cc6l8g8qm60pt09qifu07.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ngquangan.taxiApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519982968515:android:501ebeec8da7b091",
+        "android_client_info": {
+          "package_name": "com.ngquangan.taxi_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "519982968515-a3728nsit77t913q8jqjem50idong0ka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASKIpC2r9lISgM1kT5mRaBLAS3dsxmXe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "519982968515-a3728nsit77t913q8jqjem50idong0ka.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "519982968515-1k1hcvn1l25cc6l8g8qm60pt09qifu07.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ngquangan.taxiApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
