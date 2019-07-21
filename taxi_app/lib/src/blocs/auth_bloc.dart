@@ -50,8 +50,8 @@ class AuthBloc {
     return true;
   }
 
-  void signUp(String name, String phone, String email, String pass, Function onSuccess) {
-    _fbAuth.signUp(email, pass, name, phone, onSuccess);
+  void signUp(String name, String phone, String email, String pass, Function onSuccess, Function(String) onRegisterError) {
+    _fbAuth.signUp(email, pass, name, phone, onSuccess, onRegisterError);
   }
 
   void dispose() {

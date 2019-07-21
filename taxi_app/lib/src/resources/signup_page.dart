@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_app/src/blocs/auth_bloc.dart';
-import 'package:taxi_app/src/firebase/firebase_auth.dart';
 import 'package:taxi_app/src/resources/home_page.dart';
 import 'package:taxi_app/src/resources/login_page.dart';
+import 'package:taxi_app/src/resources/widgets/dialog/loading_dialog.dart';
+import 'package:taxi_app/src/resources/widgets/dialog/message_dialog.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({Key key}) : super(key: key);
@@ -190,18 +191,30 @@ class _SignUpState extends State<SignUp> {
     var pass = _passController.text;
 
     if (authBloc.isValidDataSignUp(name, phone, email, pass)) {
+      // loading dialog
+      LoadingDialog.showLoadingDialog(context, "Creating account...");
       authBloc.signUp(name, phone, email, pass, () {
         _nameController.clear();
         _phoneController.clear();
         _emailController.clear();
         _passController.clear();
+        LoadingDialog.hideLoadingDialog(context);
         Navigator.push(context,
           MaterialPageRoute(
             builder: (context) => Home()
           )
         );
+      }, (msg) {
+        LoadingDialog.hideLoadingDialog(context);
+        MessageDialog.showMsgDialog(context, "Sign up error", msg);
       });
     }
+  }
+
+  @override
+  void dispose() {
+    authBloc.dispose();
+    super.dispose();
   }
 
   void _onOpenLogin() {
