@@ -20,24 +20,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text(
-                "Please input your email to reset password",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 18,
-                ),
+              padding: const EdgeInsets.only(top: 20),
+              child: TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.email),
+                    labelText: "Email",
+                    labelStyle: TextStyle(fontSize: 16, color: Colors.grey)),
               ),
             ),
-            TextField(
-              decoration: InputDecoration(
-                  labelText: "Email",
-                  labelStyle: TextStyle(
-                    fontSize: 16,
-                  )),
-            ),
             Padding(
-              padding: const EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 20),
               child: SizedBox(
                 width: double.infinity,
                 height: 40,
