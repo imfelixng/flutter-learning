@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:taxi_app/src/blocs/auth_bloc.dart';
-import 'package:taxi_app/src/resources/forgot_password_page.dart';
-import 'package:taxi_app/src/resources/home_page.dart';
-import 'package:taxi_app/src/resources/signup_page.dart';
+import 'package:taxi_app/src/resources/pages/home_page.dart';
+import 'package:taxi_app/src/resources/pages/login_page.dart';
 import 'package:taxi_app/src/resources/widgets/dialog/loading_dialog.dart';
 import 'package:taxi_app/src/resources/widgets/dialog/message_dialog.dart';
 
-class Login extends StatefulWidget {
-  Login({Key key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  SignUp({Key key}) : super(key: key);
 
-  _LoginState createState() => _LoginState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginState extends State<Login> {
+class _SignUpState extends State<SignUp> {
+  TextEditingController _nameController = new TextEditingController();
+  TextEditingController _phoneController = new TextEditingController();
   TextEditingController _emailController = new TextEditingController();
   TextEditingController _passController = new TextEditingController();
 
@@ -32,20 +32,20 @@ class _LoginState extends State<Login> {
                 children: <Widget>[
                   SizedBox(
                     width: double.infinity,
-                    height: 150,
+                    height: 40,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 40),
                     child: Image.asset(
-                      'assets/images/img_car_green.png',
+                      'assets/images/img_car_red.png',
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: Text(
-                      "Welcome Back!",
+                      "Welcome Aboard!",
                       style: TextStyle(
-                          color: Colors.black54,
+                          color: Colors.black87,
                           fontSize: 20,
                           fontWeight: FontWeight.w600),
                     ),
@@ -53,13 +53,50 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 80),
                     child: Text(
-                      "Login to continue using iCab",
+                      "Signup with iCab in simple steps",
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: 16,
                       ),
                     ),
                   ),
+                  Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: StreamBuilder(
+                        stream: authBloc.nameStream,
+                        builder: (context, snapshot) {
+                          return TextField(
+                            controller: _nameController,
+                            decoration: InputDecoration(
+                                errorText:
+                                    snapshot.hasError ? snapshot.error : null,
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(Icons.account_circle),
+                                labelText: "Name",
+                                labelStyle: TextStyle(
+                                    fontSize: 16, color: Colors.grey)),
+                          );
+                        },
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: StreamBuilder(
+                        stream: authBloc.phoneStream,
+                        builder: (context, snapshot) {
+                          return TextField(
+                            controller: _phoneController,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                                errorText:
+                                    snapshot.hasError ? snapshot.error : null,
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(Icons.phone),
+                                labelText: "Phone Number",
+                                labelStyle: TextStyle(
+                                    fontSize: 16, color: Colors.grey)),
+                          );
+                        },
+                      )),
                   Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: StreamBuilder(
@@ -98,18 +135,6 @@ class _LoginState extends State<Login> {
                           );
                         },
                       )),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: _onOpenForgotPassword,
-                        child: Text(
-                          "Forget password?",
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
-                        ),
-                      )
-                    ],
-                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 30, bottom: 30),
                     child: SizedBox(
@@ -119,9 +144,9 @@ class _LoginState extends State<Login> {
                         color: Colors.blue,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(5))),
-                        onPressed: _onLogIn,
+                        onPressed: _onSignUp,
                         child: Text(
-                          "Log In",
+                          "Sign Up",
                           style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
@@ -130,18 +155,19 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "New User? ",
+                          "Already a User? ",
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
                           ),
                         ),
                         GestureDetector(
-                          onTap: _onOpenSignUp,
+                          onTap: _onOpenLogin,
                           child: Text(
-                            "Sign up for a new account",
+                            "Login now",
                             style: TextStyle(
                               color: Colors.blue,
                               fontSize: 16,
@@ -158,30 +184,40 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void _onLogIn() {
+  void _onSignUp() {
+    var name = _nameController.text;
+    var phone = _phoneController.text;
     var email = _emailController.text;
     var pass = _passController.text;
-    if (authBloc.isValidDataLogin(email, pass)) {
-      LoadingDialog.showLoadingDialog(context, "Logging user...");
-      authBloc.signIn(email, pass, () {
+
+    if (authBloc.isValidDataSignUp(name, phone, email, pass)) {
+      // loading dialog
+      LoadingDialog.showLoadingDialog(context, "Creating account...");
+      authBloc.signUp(name, phone, email, pass, () {
+        _nameController.clear();
+        _phoneController.clear();
         _emailController.clear();
         _passController.clear();
         LoadingDialog.hideLoadingDialog(context);
-        Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Home()));
+        Navigator.push(context,
+          MaterialPageRoute(
+            builder: (context) => Home()
+          )
+        );
       }, (msg) {
         LoadingDialog.hideLoadingDialog(context);
-        MessageDialog.showMsgDialog(context, "Sign In Error", msg);
+        MessageDialog.showMsgDialog(context, "Sign up error", msg);
       });
     }
   }
 
-  void _onOpenForgotPassword() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => ForgotPassword()));
+  @override
+  void dispose() {
+    authBloc.dispose();
+    super.dispose();
   }
 
-  void _onOpenSignUp() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+  void _onOpenLogin() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
   }
 }
