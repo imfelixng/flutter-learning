@@ -10,8 +10,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        child: Stack(
+          children: <Widget>[
+            AppBar(
+              centerTitle: true,
+              title: Text("iCab"),
+            ),
+            
+          ],
+        ),
       ),
     );
   }

@@ -22,6 +22,11 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.blue),
+        elevation: 0,
+      ),
       body: SafeArea(
         child: Container(
             padding: EdgeInsets.only(left: 30, right: 30),
@@ -152,31 +157,6 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Already a User? ",
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: _onOpenLogin,
-                          child: Text(
-                            "Login now",
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontSize: 16,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
                 ],
               ),
             )),

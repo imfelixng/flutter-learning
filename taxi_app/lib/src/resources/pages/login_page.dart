@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:taxi_app/src/blocs/auth_bloc.dart';
 import 'package:taxi_app/src/resources/pages/forgot_password_page.dart';
 import 'package:taxi_app/src/resources/pages/home_page.dart';
 import 'package:taxi_app/src/resources/pages/signup_page.dart';
 import 'package:taxi_app/src/resources/widgets/dialog/loading_dialog.dart';
 import 'package:taxi_app/src/resources/widgets/dialog/message_dialog.dart';
+
+import '../../app.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -17,10 +18,11 @@ class _LoginState extends State<Login> {
   TextEditingController _emailController = new TextEditingController();
   TextEditingController _passController = new TextEditingController();
 
-  AuthBloc authBloc = new AuthBloc();
-
   @override
   Widget build(BuildContext context) {
+
+    var authBloc = MyApp.of(context).authBloc;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -161,6 +163,9 @@ class _LoginState extends State<Login> {
   void _onLogIn() {
     var email = _emailController.text;
     var pass = _passController.text;
+
+    var authBloc = MyApp.of(context).authBloc;
+
     if (authBloc.isValidDataLogin(email, pass)) {
       LoadingDialog.showLoadingDialog(context, "Logging user...");
       authBloc.signIn(email, pass, () {
@@ -184,4 +189,12 @@ class _LoginState extends State<Login> {
   void _onOpenSignUp() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
   }
+
+  @override
+  void dispose() {
+    var authBloc = MyApp.of(context).authBloc;
+    authBloc.dispose();
+    super.dispose();
+  }
+
 }
