@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home.dart';
+import 'package:tiktok_ui/pages/home.dart';
 
 class App extends StatelessWidget {
   @override

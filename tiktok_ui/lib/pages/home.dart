@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok_ui/widgets/actions_toolbar.dart';
+import 'package:tiktok_ui/widgets/bottom_toolbar.dart';
+import 'package:tiktok_ui/widgets/video_description.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -16,7 +19,7 @@ class _HomeState extends State<Home> {
       child: Row(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[videoDescription, actionsToolbar]));
+          children: <Widget>[VideoDescription(), ActionsToolbar()]));
 
   Widget get videoDescription =>
       Expanded(
@@ -30,25 +33,6 @@ class _HomeState extends State<Home> {
             ]),
       );
 
-  Widget get actionsToolbar => Container(
-    width: 100.0,
-    color: Colors.red[300],
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: List<Widget>.generate(5, (index) => Container(
-          width: 60, height: 60,
-          color: Colors.blue[300],
-          margin: EdgeInsets.only(top: 20.0))),
-    ),
-  );
-
-  Widget get bottomSection => Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: List<Widget>.generate(5, (index) => Container(
-        width: 40.0, height: 40.0,
-        color: Colors.purple[300])),
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +41,7 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             topSection,
             middleSection,
-            bottomSection,
+            BottomToolbar(),
           ],
         ),
       ),
