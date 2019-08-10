@@ -5,13 +5,23 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+            // We want to refresh, but this actually does nothing. Which is the limitation of future builder
+             _getListData();
+          },
+          child: Icon(
+            Icons.refresh,
+            color: Colors.white,
+        ),
+        ),
         backgroundColor: Colors.grey[900],
         body: FutureBuilder(
-          future: _getListData(),
+          future: _getListData(hasError: false, hasData: true),
           builder: (buildContext, snapshot) {
 
             if (snapshot.hasError) {
-              _getInformationMessage(snapshot.error);
+              return _getInformationMessage(snapshot.error);
             }
 
             if(!snapshot.hasData) {
