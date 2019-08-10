@@ -10,10 +10,22 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Widget get topSection => Container(
-        height: 100.0,
-        padding: EdgeInsets.only(bottom: 15.0),
-        color: Colors.yellow[300],
-      );
+    height: 100.0,
+    padding: EdgeInsets.only(bottom: 15.0),
+    alignment: Alignment(0.0, 1.0),
+    child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Text('Following'),
+          Container(
+            width: 15.0,
+          ),
+          Text('For you',
+              style: TextStyle(
+                  fontSize: 17.0, fontWeight: FontWeight.bold))
+        ]),
+  );
 
   Widget get middleSection => Expanded(
       child: Row(
@@ -36,6 +48,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(
           children: <Widget>[

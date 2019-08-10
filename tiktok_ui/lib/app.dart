@@ -7,6 +7,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Home(),
-    );
+      theme: ThemeData(
+        // Uncomment in phase 3 to apply white to text
+        textTheme: Theme.of(context).textTheme.apply(
+            bodyColor: Colors.white,
+            displayColor: Colors.white
+        ),
+      ),    );
   }
 }
