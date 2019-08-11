@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:scoped_model_app/enums/view_states.dart';
 import 'package:scoped_model_app/scoped_model/home_model.dart';
 
 import '../service_locator.dart';
 
 class HomeView extends StatelessWidget {
+
+  Widget _getBodyUi(ViewState state) {
+    switch (state) {
+      case ViewState.Busy:
+        return CircularProgressIndicator();
+      case ViewState.Retrieved:
+      default:
+        return Text('Done');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScopedModel<HomeModel>(
@@ -20,9 +32,15 @@ class HomeView extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              body: Center(
-                child: Text(model.title),
-              ),
+                body: Center(
+                    child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          _getBodyUi(model.state),
+                          Text(model.title),
+                        ]
+                    )
+                ),
             )));
   }
 }

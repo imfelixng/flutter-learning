@@ -1,4 +1,5 @@
 import 'package:scoped_model/scoped_model.dart';
+import 'package:scoped_model_app/enums/view_states.dart';
 import 'package:scoped_model_app/service_locator.dart';
 import 'package:scoped_model_app/services/storage_service.dart';
 
@@ -7,14 +8,19 @@ class HomeModel extends Model {
 
   String title = "HomeModel";
 
+  ViewState _state;
+  ViewState get state => _state;
+
   Future saveData() async {
-    setTitle("Saving Data");
+    _setState(ViewState.Busy);
+    title = "Saving Data";
     await storageService.saveData();
-    setTitle("Data Saved");
+    title = "Data Saved";
+    _setState(ViewState.Retrieved);
   }
 
-  void setTitle(String value) {
-    title = value;
+  void _setState(ViewState newState) {
+    _state = newState;
     notifyListeners();
   }
 }
