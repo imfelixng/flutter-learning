@@ -4,7 +4,7 @@ import 'package:scoped_model_app/services/storage_service.dart';
 
 import 'base_model.dart';
 
-class HomeModel extends BaseModel {
+class SuccessModel extends BaseModel {
   StorageService storageService = locator<StorageService>();
 
   String title = "HomeModel";
