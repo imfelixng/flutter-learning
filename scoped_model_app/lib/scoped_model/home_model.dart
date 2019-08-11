@@ -15,5 +15,7 @@ class HomeModel extends BaseModel {
     await storageService.saveData();
     title = "Data Saved";
     setState(ViewState.Retrieved);
+
+    return true;
   }
 }
