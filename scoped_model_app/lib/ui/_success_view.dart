@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model_app/enums/view_states.dart';
 import 'package:scoped_model_app/scoped_model/home_model.dart';
 import 'package:scoped_model_app/scoped_model/success_model.dart';
+import 'package:scoped_model_app/widgets/busy_overlay.dart';
 
 import 'base_view.dart';
 
 class SuccessView extends StatelessWidget {
+  final String title;
+
+  SuccessView({this.title});
+
   @override
   Widget build(BuildContext context) {
     return BaseView<SuccessModel>(
-        builder: (context, child, model) => Scaffold(
-          body: Center(child: Text(this.runtimeType.toString()),),
-        ));
+        onModelReady: (model) => model.fetchDuplicatedText(title),
+        builder: (context, child, model) => BusyOverlay(
+            show: model.state == ViewState.Busy,
+            child: Scaffold(
+              body: Center(child: Text(model.title)),
+            )));
   }
 }

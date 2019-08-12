@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:scoped_model_app/enums/view_states.dart';
 import 'package:scoped_model_app/scoped_model/home_model.dart';
 import 'package:scoped_model_app/widgets/busy_overlay.dart';
 
-import '../service_locator.dart';
 import '_error_view.dart';
 import '_success_view.dart';
 import 'base_view.dart';
@@ -31,7 +29,7 @@ class HomeView extends StatelessWidget {
               onPressed: () async {
                 var whereToNavigate = await model.saveData();
                 if (whereToNavigate) {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => SuccessView()));
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => SuccessView(title: "Passed in from home")));
                 } else {
                   Navigator.push(context,MaterialPageRoute(builder: (context) => ErrorView()));
                 }
