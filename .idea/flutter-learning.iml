@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/bloc_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/bloc_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/blog_provider_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/blog_provider_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/check_network_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/check_network_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/check_network_app/ios/.symlinks/plugins/connectivity/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/check_network_app/ios/.symlinks/plugins/connectivity/build" />
+      <excludeFolder url="file://$MODULE_DIR$/check_network_app/ios/.symlinks/plugins/connectivity/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/check_network_app/ios/.symlinks/plugins/connectivity/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/fba_dog_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/fba_dog_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/fba_login_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/fba_login_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flare_animation_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flare_animation_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flight_ui_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flight_ui_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/scoped_model_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/scoped_model_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/tiktok_ui/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/tiktok_ui/build" />
+      <excludeFolder url="file://$MODULE_DIR$/todo_rxdart_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/todo_rxdart_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ud01_personal_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ud01_personal_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/udemy02_bloc_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/udemy02_bloc_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/udemy02_image_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/udemy02_image_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/udemy02_login_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/udemy02_login_app/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
