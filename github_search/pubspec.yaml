@@ -5,8 +5,7 @@ dependencies:
   flutter:
     sdk: flutter
   rxdart:
-    path: ../../../
-  http: "^0.11.3+16"
+  http:
 
 dev_dependencies:
   mockito: 3.0.0
