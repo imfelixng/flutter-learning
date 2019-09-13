@@ -26,7 +26,7 @@ class CheckNetWork extends StatelessWidget {
                     print('aaa');
           },
                   child: Opacity(
-                    opacity: 0.5,
+                    opacity: 1,
                     child: Container(
                       height: MediaQuery.of(context).size.height,
                       width: MediaQuery.of(context).size.width,
