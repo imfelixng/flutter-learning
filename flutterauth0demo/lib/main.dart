@@ -9,6 +9,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:local_auth/local_auth.dart';
+
 
 final FlutterAppAuth appAuth = FlutterAppAuth();
 final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
@@ -52,11 +54,28 @@ class _MyAppState extends State<MyApp> {
           title: Text('Auth0 Demo'),
         ),
         body: Center(
-          child: isBusy
-              ? CircularProgressIndicator()
-              : isLoggedIn
-              ? Profile(logoutAction, name, picture)
-              : Login(loginAction, errorMessage),
+          child: Column(
+            children: <Widget>[
+              isBusy
+                  ? CircularProgressIndicator()
+                  : isLoggedIn
+                  ? Profile(logoutAction, name, picture)
+                  : Login(loginAction, errorMessage),
+              FlatButton(
+                color: Colors.green,
+                onPressed: () async {
+                  var localAuth = LocalAuthentication();
+                  bool didAuthenticate =
+                      await localAuth.authenticateWithBiometrics(
+                      localizedReason: 'Please authenticate to show account balance');
+                  print('TEST: $didAuthenticate');
+                },
+                child: Text('Login with biometric', style: TextStyle(
+                  color: Colors.white
+                ),),
+              )
+            ],
+          )
         ),
       ),
     );
